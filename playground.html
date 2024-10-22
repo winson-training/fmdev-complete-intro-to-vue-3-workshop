@@ -9,7 +9,7 @@
   <body>
     <h1>Hello Frontend Masters!</h1>
     <div id="app">
-      <h1>Counter</h1>
+      <h1>{{counterTitle}}</h1>
       <p>{{ count }}</p>
       <button v-on:click="incrementCount">Increment Count</button>
       <h1>{{ incrementAmount }}</h1>
@@ -40,6 +40,7 @@
             count: 10,
             incrementAmount: 8,
             message: 'Hello it works',
+            counterTitle: 'Counter Standard',
             listOfNumbers: [
               {
                 name: 1,
@@ -70,8 +71,17 @@
           }
         },
         methods: {
-          incrementCount() {
+          incrementCount(newAmount, event) {
+            console.log(newAmount)
+            console.log(event);
             this.count += this.incrementAmount
+          }
+        },
+        watch: {
+          count(value) {
+            if (newValue > 20){
+              this.counterTitle += ' Very Long'
+            }
           }
         }
       })
