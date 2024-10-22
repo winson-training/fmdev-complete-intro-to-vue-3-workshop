@@ -8,6 +8,11 @@
   </head>
   <body>
     <div id="app">
+      <h2>Statistics</h2>
+      <ul>
+        {{ benderStatistics }}
+      </ul>
+
       <p v-if="characterList.length === 0">There are no characters</p>
       <ul v-else-if="characterList.length % 2 === 0">
         <li v-for="character in characterList">
@@ -42,24 +47,54 @@
       Vue.createApp({
         data: () => ({
           newCharacter: {
-            name: ''
+            name: '',
+            element: []
           },
           characterList: [
             {
-              name: 'Aang'
+              name: 'Aang',
+              element: ['Air', 'Water', 'Earth', 'Fire']
             },
             {
-              name: 'Zuko'
+              name: 'Zuko',
+              element: ['Fire']
+            
             },
             {
-              name: 'Toph'
+              name: 'Toph',
+              element: ['Earth']
             },
             {
-              name: 'Katara'
+              name: 'Katara',
+              element: ['Water']
             }
           ],
           favoriteList: []
         }),
+        computed: {
+          benderStatistics() {
+
+            const elements = ['Earth', 'Air', 'Water', 'Fire']
+
+            const statistics = {
+              Air: 0,
+              Earth: 0,
+              Water: 0,
+              Fire: 0
+            }
+
+            this.characterList.forEach((character) => {
+              elements.forEach((element) => {
+                if (character.element.indexOf(element) > -1) {
+                  statistics[element]++
+                }
+              })
+            })
+
+            return statistics
+            
+          }
+        },
         methods: {
           addNewCharacter() {
             this.characterList.push(this.newCharacter)
