@@ -1,9 +1,10 @@
 <script>
 import BenderStatistics from "./components/BenderStatistics.vue";
-
+import CharacterCard from "./components/CharacterCard.vue";
 export default {
   components: {
     BenderStatistics,
+    CharacterCard
   },
   data: () => ({
     newCharacter: {
@@ -35,9 +36,10 @@ export default {
       this.characterList.push(this.newCharacter);
       this.newCharacter = { name: "" };
     },
-    favoriteCharacter(character) {
-      this.favoriteList.push(character);
+    addFavoriteCharacter(payload) {
+      this.favoriteList.push(payload);
     },
+    
   },
 };
 </script>
@@ -51,8 +53,8 @@ export default {
       v-for="(character, index) in characterList"
       :key="`even-character-${index}`"
     >
-      <p>{{ character.name }}</p>
-      <button @click="favoriteCharacter(character)">⭐ Favorite</button>
+      <!-- character card here -->
+       <CharacterCard :character="character" @favorite="addFavoriteCharacter"  />
     </li>
   </ul>
   <p v-else>There are odd characters!</p>
