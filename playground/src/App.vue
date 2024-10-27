@@ -1,9 +1,11 @@
 <script>
+import UserCard from "./components/user-card.vue";
 import BaseCounter from "./components/base-counter.vue";
 
 export default {
   components: {
     BaseCounter,
+    UserCard,
   },
   data() {
     return {
@@ -35,12 +37,38 @@ export default {
           list: [1, 2, 3],
         },
       ],
+      userData: {
+        name: "John Bob",
+        favouriteFood: "Pizza",
+        preferredFramework: "Vue",
+        favouriteNumbers: [1, 2, 3, 4, 5],
+      },
+      user2: {
+        name: "Jane Doe",
+        food: "Pasta",
+      },
     };
+  },
+  methods: {
+    // Method that updates the message
+    changeName($name) {
+      this.userData.name = $name;
+    },
+  },
+  computed: {
+    // Computed property that returns the message length
+    refinedUserData() {
+      return {
+        name: this.userData.name,
+        food: this.userData.favouriteFood,
+      };
+    },
   },
 };
 </script>
 
 <template>
+  <UserCard :user="refinedUserData" :user2="user2" v-on:update-name="changeName" />
   <BaseCounter />
   <hr />
   <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
