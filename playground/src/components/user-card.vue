@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <h1>User: {{ user.name }}</h1>
+  <h2>User: {{ user.name }}</h2>
   <p>Favorite Food: {{ user.food }}</p>
   <button @click="tellParentChangeName">Change Name</button>
 </template>

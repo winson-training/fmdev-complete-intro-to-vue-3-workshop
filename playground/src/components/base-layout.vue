@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper">
+    <header class="header">
+      <slot name="header" />
+    </header>
     <main class="main">
       <slot name="main" />
     </main>
@@ -13,12 +16,17 @@
 </template>
 
 <style>
+.header {
+  border: 2px solid purple;
+}
 .sidebar {
   border: 2px solid red;
+  float:right;
 }
 
 .main {
   border: 2px solid green;
+  float:left;
 }
 
 .footer {

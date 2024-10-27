@@ -28,10 +28,10 @@ export default {
 </script>
 
 <template>
-  <h1>{{ displayTitle }}</h1>
+  <h2>{{ displayTitle }}</h2>
   <p :data-increment-by="incrementAmount">{{ count }}</p>
   <button @click="incrementCount">Increment Count</button>
-  <h1>{{ incrementAmount }}</h1>
+  <h3>{{ incrementAmount }}</h3>
   <p>{{ optimizedIncrementAmount }}</p>
   <div>
     <label for="incrementAmount">Increment by:</label>

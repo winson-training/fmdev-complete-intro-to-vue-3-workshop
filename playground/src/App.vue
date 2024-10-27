@@ -67,10 +67,14 @@ export default {
 
 <template>
   <BaseLayout>
-    <template v-slot:sidebar> Aside </template>
+    <template v-slot:header>
+      <h1>{{ message }}</h1>
+    </template>
     <template v-slot:main>
       <UserCard :user="refinedUserData" @change-name="changeName" />
     </template>
+    <template v-slot:sidebar> Aside </template>
+
     <template v-slot:footer>
       <BaseCounter />
     </template>
