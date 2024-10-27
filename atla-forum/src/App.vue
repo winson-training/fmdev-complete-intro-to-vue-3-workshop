@@ -1,5 +1,10 @@
 <script>
+import UserCard from "./components/user-card.vue";
+
 export default {
+  components: {
+    UserCard,
+  },
   data: () => ({
     newCharacter: {
       name: "",
@@ -59,6 +64,8 @@ export default {
 </script>
 
 <template>
+  <UserCard />
+  
   <h2>Statistics</h2>
   <ul>
     <li
