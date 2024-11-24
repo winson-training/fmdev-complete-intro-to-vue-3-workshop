@@ -15,7 +15,7 @@ export default {
 
   <Suspense>
     <template #default>
-      <pokedex />
+      <pokedex region="Noland" />
     </template>
     <template #fallback>
       <div>Loading...</div>
