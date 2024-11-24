@@ -44,7 +44,12 @@ export default {
   </header>
   <!-- <HomePage v-if="currentPage === 'Home'" />
   <LoginPage v-else /> -->
-  <component :is="renderPage" />
+  <Suspense>
+    <component :is="renderPage" />
+    <template #fallback>
+      <div>Loading...</div>
+    </template>
+  </Suspense>
 </template>
 
 <style>

@@ -1,23 +1,33 @@
 <script>
-import UserCard from './UserCard.vue';
+import UserCard from "./UserCard.vue";
+import { reactive } from "vue";
 
 export default {
-    components: {
-        UserCard,
-    },
+  components: {
+    UserCard,
+  },
+  async setup() {
+    const state = reactive({
+      userList: [],
+    });
+
+    async function fetchUsers() {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+      ).then((res) => res.json());
+      return response;
+    }
+
+    state.userList = await fetchUsers();
+
+    return {
+      state,
+      //fetchUsers
+    };
+  },
   data: () => ({
     userList: [],
   }),
-  methods: {
-    async fetchUsers() {
-      this.userList = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      ).then((res) => res.json());
-    },
-  },
-  created() {
-    this.fetchUsers();
-  },
 };
 </script>
 
@@ -26,7 +36,7 @@ export default {
     <h1>Users</h1>
     <ul>
       <!-- usercard here -->
-      <UserCard v-for="user in userList" :user="user" :key="user.id" />
+      <UserCard v-for="user in state.userList" :user="user" :key="user.id" />
     </ul>
   </main>
 </template>
