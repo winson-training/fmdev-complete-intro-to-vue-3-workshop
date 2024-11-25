@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <button>
+  <button class="button">
     <slot v-if="left">Icon Left - Cancel</slot>
     <slot v-else>Submit</slot>
   </button>
