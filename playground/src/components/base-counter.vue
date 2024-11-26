@@ -1,12 +1,16 @@
 <script>
 import { useCount } from "../composables/countStore";
 
+import { useCountStore } from "@/stores/CountStore";
+
+
 export default {
   setup() {
     const countStore = useCount();
-
+    const newCountStore = useCountStore();
     return {
       countStore,
+      newCountStore
     };
   },
   data: () => ({
@@ -39,7 +43,16 @@ export default {
 
 <template>
   <h1>{{ displayTitle }}</h1>
-  <h2>New Counter</h2>
+  <h2>Third Counter Version: {{ newCountStore.count }}</h2>
+
+  <button class="button" @click="newCountStore.increment">
+    Increment Count
+  </button>
+
+
+</hr>
+
+  <h2>New Counter:</h2>
   <p>Global Count: {{ countStore.globalCount }}</p>
   <p>Local Count: {{ countStore.localCount }}</p>
   <button class="button" @click="countStore.incrementGlobalCount">
